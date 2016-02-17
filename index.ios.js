@@ -10,7 +10,7 @@ import React, {
   Image
 } from 'react-native';
 
-const REQUEST_URL = 'https://raw.githubusercontent.com/facebook/react-native/master/docs/MoviesExample.json';
+const REQUEST_URL = 'https://itunes.apple.com/tw/rss/topsongs/limit=100/json';
 
 class KakuApp extends Component {
   constructor(props) {
@@ -32,7 +32,7 @@ class KakuApp extends Component {
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(responseData.movies),
+          dataSource: this.state.dataSource.cloneWithRows(responseData.feed.entry),
           loaded: true
         });
       })
@@ -43,22 +43,26 @@ class KakuApp extends Component {
     return (
       <View style={styles.container}>
         <Text>
-          Loading movies...
+          Loading tracks...
         </Text>
       </View>
     );
   }
 
-  renderMovie(movie) {
+  renderTrack(trackInfo) {
+    let trackName = trackInfo['im:name'].label || 'Unknown';
+    let trackAuthor = trackInfo['im:artist'].label || 'Unknown';
+    let trackThumbnail = trackInfo['im:image'].pop().label;
+
     return (
       <View style={styles.container}>
         <Image
-          source={{uri: movie.posters.thumbnail}}
+          source={{uri: trackThumbnail}}
           style={styles.thumbnail}
         />
         <View style={styles.rightContainer}>
-          <Text style={styles.title}>{movie.title}</Text>
-          <Text style={styles.year}>{movie.year}</Text>
+          <Text style={styles.trackName}>{trackName}</Text>
+          <Text style={styles.trackAuthor}>{trackAuthor}</Text>
         </View>
       </View>
     );
@@ -72,13 +76,10 @@ class KakuApp extends Component {
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderMovie}
+        renderRow={this.renderTrack}
         style={styles.listView}>
       </ListView>
     );
-
-    let movie = this.state.movies[0];
-    return this.renderMovie(movie);
   }
 }
 
@@ -97,12 +98,12 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50
   },
-  title: {
+  trackName: {
     fontSize: 20,
     marginBottom: 8,
     textAlign: 'center',
   },
-  year: {
+  trackAuthor: {
     textAlign: 'center'
   },
   listView: {
