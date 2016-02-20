@@ -8,6 +8,7 @@
   "dependencies": {
     "react-native": "^0.20.0",
     "react-native-icons": "^0.7.1",
-    "react-native-scrollable-tab-view": "^0.3.6"
+    "react-native-scrollable-tab-view": "^0.3.6",
+    "react-native-video": "^0.7.1"
   }
 }
