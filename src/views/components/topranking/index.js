@@ -4,6 +4,7 @@ import React, {
   Component, Text, View, ListView, Image, TouchableHighlight
 } from 'react-native';
 import TopRanking from '../../../modules/TopRanking';
+import PlayerComponent from '../player';
 import Styles from './styles';
 
 class TopRankingComponent extends Component {
@@ -59,7 +60,8 @@ class TopRankingComponent extends Component {
   }
 
   onItemPress(track) {
-    console.log(track);
+    // TODO
+
   }
 
   render() {

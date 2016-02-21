@@ -2,7 +2,7 @@
 
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
@@ -31,5 +31,4 @@ const styles = StyleSheet.create({
   }
 });
 
-
-module.exports = styles;
+module.exports = Styles;

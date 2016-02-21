@@ -6,9 +6,7 @@ import TopRankingComponent from './views/components/topranking';
 class KakuApp extends Component {
   render() {
     return (
-      <View>
-        <TopRankingComponent/>
-      </View>
+      <TopRankingComponent/>
     );
   }
 }
