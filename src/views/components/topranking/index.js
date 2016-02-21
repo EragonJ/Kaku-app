@@ -1,20 +1,23 @@
 'use strict';
 
-import React, { Component, Text, View, ListView, Image } from 'react-native';
+import React, {
+  Component, Text, View, ListView, Image, TouchableHighlight
+} from 'react-native';
 import TopRanking from '../../../modules/TopRanking';
 import Styles from './styles';
 
 class TopRankingComponent extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      loaded: false,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2
-      }),
-      loaded: false
+      })
     };
   }
-  
+
   componentDidMount() {
     TopRanking.get().then((tracks) => {
       this.setState({
@@ -34,23 +37,29 @@ class TopRankingComponent extends Component {
     );
   }
 
-  renderTrack(track) {
+  renderTrack(track, sectionId, rowId) {
     let trackName = track.title;
     let trackAuthor = track.artist;
     let trackThumbnail = track.covers.default;
 
     return (
-      <View style={Styles.container}>
-        <Image
-          source={{uri: trackThumbnail}}
-          style={Styles.thumbnail}
-        />
-        <View style={Styles.rightContainer}>
-          <Text style={Styles.trackName}>{trackName}</Text>
-          <Text style={Styles.trackAuthor}>{trackAuthor}</Text>
+      <TouchableHighlight onPress={() => {this.onItemPress(track)}}>
+        <View style={Styles.container}>
+          <Image
+            source={{uri: trackThumbnail}}
+            style={Styles.thumbnail}
+          />
+          <View style={Styles.rightContainer}>
+            <Text style={Styles.trackName}>{trackName}</Text>
+            <Text style={Styles.trackAuthor}>{trackAuthor}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     );
+  }
+
+  onItemPress(track) {
+    console.log(track);
   }
 
   render() {
@@ -58,10 +67,12 @@ class TopRankingComponent extends Component {
       return this.renderLoadingView();
     }
 
+    let renderTrack = this.renderTrack.bind(this);
+
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={this.renderTrack}
+        renderRow={renderTrack}
         style={Styles.listView}>
       </ListView>
     );
