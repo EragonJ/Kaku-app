@@ -30,6 +30,7 @@
 		9DA6D2351C7D9649006ED399 /* Material-Design-Iconic-Font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DA6D2301C7D9649006ED399 /* Material-Design-Iconic-Font.ttf */; };
 		9DA6D2361C7D9649006ED399 /* octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DA6D2311C7D9649006ED399 /* octicons.ttf */; };
 		9DA6D2371C7D9649006ED399 /* zocial-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9DA6D2321C7D9649006ED399 /* zocial-regular-webfont.ttf */; };
+		9DA6D2511C7E03DA006ED399 /* blank.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9DA6D2501C7E03DA006ED399 /* blank.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +158,7 @@
 		9DA6D2301C7D9649006ED399 /* Material-Design-Iconic-Font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Material-Design-Iconic-Font.ttf"; sourceTree = "<group>"; };
 		9DA6D2311C7D9649006ED399 /* octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = octicons.ttf; sourceTree = "<group>"; };
 		9DA6D2321C7D9649006ED399 /* zocial-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "zocial-regular-webfont.ttf"; sourceTree = "<group>"; };
+		9DA6D2501C7E03DA006ED399 /* blank.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = blank.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				9DA6D2381C7D9696006ED399 /* Fonts */,
+				9DA6D25E1C7E03F4006ED399 /* Resources */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -369,6 +372,14 @@
 				9DA6D22B1C7D95ED006ED399 /* FontAwesome.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		9DA6D25E1C7E03F4006ED399 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9DA6D2501C7E03DA006ED399 /* blank.mp4 */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,6 +604,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DA6D2511C7E03DA006ED399 /* blank.mp4 in Resources */,
 				9DA6D22C1C7D95ED006ED399 /* FontAwesome.otf in Resources */,
 				9DA6D2331C7D9649006ED399 /* foundation-icons.ttf in Resources */,
 				9DA6D2341C7D9649006ED399 /* ionicons.ttf in Resources */,

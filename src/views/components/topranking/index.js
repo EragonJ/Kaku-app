@@ -1,9 +1,10 @@
 'use strict';
 
 import React, {
-  Component, Text, View, ListView, Image, TouchableHighlight
+  Component, Text, View, ListView, Image, TouchableHighlight, AlertIOS
 } from 'react-native';
 import TopRanking from '../../../modules/TopRanking';
+import Player from '../../../modules/Player';
 import PlayerComponent from '../player';
 import Styles from './styles';
 
@@ -11,6 +12,7 @@ class TopRankingComponent extends Component {
   constructor(props) {
     super(props);
 
+    this.renderTrack = this.renderTrack.bind(this);
     this.state = {
       loaded: false,
       dataSource: new ListView.DataSource({
@@ -48,8 +50,7 @@ class TopRankingComponent extends Component {
         <View style={Styles.container}>
           <Image
             source={{uri: trackThumbnail}}
-            style={Styles.thumbnail}
-          />
+            style={Styles.thumbnail}/>
           <View style={Styles.rightContainer}>
             <Text style={Styles.trackName}>{trackName}</Text>
             <Text style={Styles.trackAuthor}>{trackAuthor}</Text>
@@ -60,8 +61,7 @@ class TopRankingComponent extends Component {
   }
 
   onItemPress(track) {
-    // TODO
-
+    Player.play(track);
   }
 
   render() {
@@ -69,12 +69,10 @@ class TopRankingComponent extends Component {
       return this.renderLoadingView();
     }
 
-    let renderTrack = this.renderTrack.bind(this);
-
     return (
       <ListView
         dataSource={this.state.dataSource}
-        renderRow={renderTrack}
+        renderRow={this.renderTrack}
         style={Styles.listView}>
       </ListView>
     );

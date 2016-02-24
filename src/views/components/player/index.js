@@ -2,7 +2,6 @@
 
 import React, {
 	Component,
-	AlertIOS,
 	Text,
   TouchableOpacity,
   View
@@ -10,12 +9,27 @@ import React, {
 
 import Video from 'react-native-video';
 import Styles from './styles';
+import Player from '../../../modules/Player';
 
-class Player extends Component {
+class PlayerComponent extends Component {
   constructor(props) {
     super(props);
     this.onLoad = this.onLoad.bind(this);
     this.onProgress = this.onProgress.bind(this);
+
+    const SAMPLES = [
+      'http://techslides.com/demos/sample-videos/small.mp4',
+      'http://download.wavetlan.com/SVV/Media/HTTP/H264/Talkinghead_Media/H264_test1_Talkinghead_mp4_480x360.mp4'
+    ];
+
+    Player.on('play', (track) => {
+      // TESTING
+      track.platformTrackRealUrl = SAMPLES[Math.floor(Math.random() * 100) % SAMPLES.length];
+
+      this.setState({
+        playingTrack: track
+      });
+    });
   }
 
   state = {
@@ -27,7 +41,8 @@ class Player extends Component {
     currentTime: 0.0,
     controls: true,
     paused: true,
-    skin: 'native'
+    skin: 'native',
+    playingTrack: null
   };
   
   onLoad(data) {
@@ -41,29 +56,33 @@ class Player extends Component {
   getCurrentTimePercentage() {
     if (this.state.currentTime > 0) {
       return parseFloat(this.state.currentTime) / parseFloat(this.state.duration);
-    } else {
+    }
+    else {
       return 0;
     }
   }
 
   renderVolumeControl(volume) {
     const isSelected = (this.state.volume == volume);
-
     return (
       <TouchableOpacity onPress={() => { this.setState({volume: volume}) }}>
         <Text style={[Styles.controlOption, {fontWeight: isSelected ? "bold" : "normal"}]}>
           {volume * 100}%
         </Text>
       </TouchableOpacity>
-    )
+    );
   }
 
-  renderNativeSkin() {
+  render() {
     const videoStyle = Styles.fullScreen;
+
+    let playingTrack = this.state.playingTrack;
+    let uri = playingTrack && playingTrack.platformTrackRealUrl || 'blank';
+
     return (
       <View style={Styles.container}>
         <View style={Styles.fullScreen}>
-          <Video source={{uri: "http://techslides.com/demos/sample-videos/small.mp4"}}
+          <Video source={{uri: uri}}
 						 style={videoStyle}
 						 rate={this.state.rate}
 						 paused={this.state.paused}
@@ -90,10 +109,6 @@ class Player extends Component {
       </View>
     );
   }
-
-  render() {
-    return this.renderNativeSkin();
-  }
 }
 
-module.exports = Player;
+module.exports = PlayerComponent;

@@ -11,7 +11,7 @@ const Styles = StyleSheet.create({
   },
   tabBar: {
     backgroundColor: '#dfdfdf',
-    flex: 1,
+    flex: 3,
     color: '#ff0000',
     tintColor: '#877324'
   }
