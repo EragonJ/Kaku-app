@@ -14,8 +14,11 @@ const Styles = StyleSheet.create({
     flex: 1
   },
   thumbnail: {
-    width: 50,
-    height: 50
+    width: 120,
+    height: 120,
+    borderWidth: 5,
+    borderRadius: 5,
+    margin: 5
   },
   trackName: {
     fontSize: 20,

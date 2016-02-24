@@ -41,7 +41,7 @@ class TopRankingComponent extends Component {
   renderTrack(track, sectionId, rowId) {
     let trackName = track.title;
     let trackAuthor = track.artist;
-    let trackThumbnail = track.covers.default;
+    let trackThumbnail = track.covers.large;
 
     return (
       <TouchableHighlight onPress={() => {this.onItemPress(track)}}>

@@ -72,7 +72,9 @@ class Player extends Component {
 						 resizeMode={this.state.resizeMode}
 						 onLoad={this.onLoad}
 						 onProgress={this.onProgress}
-						 onEnd={() => { AlertIOS.alert('Done!') }}
+						 onEnd={() => {
+               // TODO
+             }}
 						 repeat={true}
 						 controls={this.state.controls} />
         </View>
